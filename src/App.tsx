@@ -30,12 +30,16 @@ const Book = () => {
   if (fetching) return <p>Loading....</p>;
   if (error) return <p>Oh no... {error.message}</p>;
 
+  const handleSplit = (content: string) => {
+    return content.split(" ");
+  };
+
   return (
-    <ul>
+    <section>
       {data.book.pages.map((page: any) => (
-        <li key={page.pageIndex}>{page.content}</li>
+        <h3 key={page.pageIndex}>{page.content}</h3>
       ))}
-    </ul>
+    </section>
   );
 };
 
