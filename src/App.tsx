@@ -3,37 +3,11 @@ import { createClient, Provider, useQuery } from "urql";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { GlobalContext } from "./types/types";
 import Book, { Token } from "./routes/book/book.route";
+import BookQuery from "./graphql/queries/book/book.query";
 
 const client = createClient({
   url: "https://fullstack-engineer-test-n4ouilzfna-uc.a.run.app/graphql",
 });
-
-const BookQuery = `
-  query {
-    book {
-      author
-      pages {
-        pageIndex
-        content
-        tokens {
-          position
-          value
-        }
-      }
-      title
-    }
-  }
-`;
-
-function App() {
-  return (
-    <Provider value={client}>
-      <Main />
-    </Provider>
-  );
-}
-
-export default App;
 
 function Main() {
   const [result, reexecuteQuery] = useQuery({ query: BookQuery });
@@ -61,3 +35,13 @@ function Main() {
     </GlobalContext.Provider>
   );
 }
+
+function App() {
+  return (
+    <Provider value={client}>
+      <Main />
+    </Provider>
+  );
+}
+
+export default App;
