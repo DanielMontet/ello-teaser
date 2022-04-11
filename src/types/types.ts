@@ -12,14 +12,19 @@ export interface GlobalContextType {
 				{
 					pageIndex?: number;
 					content?: string;
-					tokens?: [position?: number[], value?: string];
+					tokens?: token[];
 				}
 			];
 			title?: string;
 		};
-	};
+	}
+	handleSplit?: (content: string) => string[]
 }
 
+export interface token {
+	position?: number[]
+	value?: string
+}
 
 
 export const GlobalContext = createContext<GlobalContextType>({});
