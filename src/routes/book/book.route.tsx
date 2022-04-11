@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { GlobalContext, GlobalContextType, token } from "../../types/types";
+import { Link, useParams } from "react-router-dom";
+import { GlobalContext, token } from "../../types/types";
 
 export const Token: React.FunctionComponent = () => {
-  return <h3>token</h3>;
+  let params = useParams();
+  return <h3>{params.slug}</h3>;
 };
 
 const Book: React.FunctionComponent = () => {
