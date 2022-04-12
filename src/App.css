@@ -1,6 +1,92 @@
-p {
+/* ----------------------
+ =====> GLOBAL
+-------------------------- */
+@font-face {
+  font-family: OneTrick,;
+  src: url('../public/one_trick_pony_ot.otf');
+}
+
+html,body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: OneTrick;
+}
+
+
+#root {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  /* background-color: #F0F2A6; */
+  /* background-color: #AA6373; */
+  background-color: #EDE7D9;
+}
+
+
+/* ----------------------
+ =====> BOOK ROUTE
+-------------------------- */
+
+.book-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(48, 1fr);
+}
+
+
+.book-content {
+  display: grid;
+  grid-template-columns: 50vw 50vw;
+  gap: 50px;
+}
+
+
+.book-content p {
+  padding: 50px;
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
-  font-size: 30px;
+  font-size: 50px;
+  margin: 5px;
+}
+
+.book-content a {
+  color: #4B4237;
+  text-decoration: none;
+}
+
+
+/* ----------------------
+ =====> TOKEN ROUTE
+-------------------------- */
+
+.token-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.token-container p {
+   color: #4B4237;
+   font-size: 50px;
+}
+
+/* ----------------------
+ ====> PAGINATION NAV
+-------------------------- */
+.nav {
+  display: flex;
+  gap: 15px;
+  grid-row-start: 46;
+}
+
+.page-item {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 50%;
+  background-color: gray;
 }

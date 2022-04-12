@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
 import { createClient, Provider, useQuery } from "urql";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { GlobalContext } from "./types/types";
-import Book, { Token } from "./routes/book/book.route";
+import Book from "./routes/book/book.route";
 import BookQuery from "./graphql/queries/book/book.query";
 import "./App.css";
+import Token from "./routes/token/token.route";
 
 const client = createClient({
   url: "https://fullstack-engineer-test-n4ouilzfna-uc.a.run.app/graphql",
