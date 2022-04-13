@@ -5,7 +5,9 @@ import Book from "./routes/book/book.route";
 import BookQuery from "./graphql/queries/book/book.query";
 import "./App.css";
 import Token from "./routes/token/token.route";
+import { createBrowserHistory } from "history";
 
+// initialize urql client
 const client = createClient({
   url: "https://fullstack-engineer-test-n4ouilzfna-uc.a.run.app/graphql",
 });
@@ -13,6 +15,7 @@ const client = createClient({
 function Main() {
   const [result, reexecuteQuery] = useQuery({ query: BookQuery });
   const { data, fetching, error } = result;
+  const history = createBrowserHistory();
 
   const handleSplit = (content: string) => {
     return content.split(" ");
@@ -21,6 +24,7 @@ function Main() {
   const context = {
     data,
     handleSplit,
+    history,
   };
 
   if (fetching) return <p>Loading....</p>;
@@ -40,6 +44,7 @@ function Main() {
 
 function App() {
   return (
+    // bootstrap urql to react
     <Provider value={client}>
       <Main />
     </Provider>

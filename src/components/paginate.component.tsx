@@ -9,20 +9,14 @@ const Paginate = ({ totalContents, contentItemsPerPage, paginate }: any) => {
 
   return (
     <nav className="nav">
-      {/* {pageNumbers.map((number) => (
-        <div
-          key={number}
-          onClick={() => paginate(number)}
-          className="page-item"
-        >
-          {number}
-        </div>
-      ))} */}
       <Pagination
         count={pageNumbers.length}
         onChange={(e, page) => paginate(page)}
         variant="outlined"
         color="secondary"
+        size="large"
+        siblingCount={0}
+        boundaryCount={0}
       />
     </nav>
   );

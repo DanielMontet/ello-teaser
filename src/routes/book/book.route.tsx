@@ -1,18 +1,18 @@
 import { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Paginate from "../../components/paginate.component";
 import { GlobalContext, token } from "../../types/types";
 
 const Book: React.FunctionComponent = () => {
   const { data, handleSplit } = useContext(GlobalContext);
   const [currentPage, setCurrentPage] = useState(1);
-  const [contentItemsPerPage] = useState(2);
+  const [itemsPerPAge] = useState(2);
   const { pages } = data?.book!;
+  let navigate = useNavigate();
 
-  // get current contents
-  const indexOfLastContentItems = currentPage * contentItemsPerPage;
-  const indexOfFirstContentItems =
-    indexOfLastContentItems - contentItemsPerPage;
+  // get current content
+  const indexOfLastItem = currentPage * itemsPerPAge;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPAge;
 
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
@@ -30,11 +30,7 @@ const Book: React.FunctionComponent = () => {
 
       const links = result.map((item, index) => {
         let { value } = tokens[index];
-        return (
-          <Link to={`/${value}`} key={index}>
-            <span>{item}</span>
-          </Link>
-        );
+        return <a onClick={(e) => navigate(`/${value}`)}>{item}</a>;
       });
 
       return links;
@@ -43,7 +39,7 @@ const Book: React.FunctionComponent = () => {
   };
 
   const currentContent = pages
-    ?.slice(indexOfFirstContentItems, indexOfLastContentItems)
+    ?.slice(indexOfFirstItem, indexOfLastItem)
     .map(({ content, pageIndex, tokens }: any) => {
       return <p key={pageIndex}>{generateTokenLink(content, tokens)}</p>;
     });
@@ -53,7 +49,7 @@ const Book: React.FunctionComponent = () => {
       <section className="book-content">{currentContent}</section>
       <Paginate
         totalContents={pages!.length}
-        contentItemsPerPage={contentItemsPerPage}
+        contentItemsPerPage={itemsPerPAge}
         paginate={paginate}
       />
     </section>

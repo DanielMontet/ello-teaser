@@ -9,9 +9,10 @@
 html,body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   font-family: OneTrick;
+  height: 100%;
 }
 
 
@@ -19,8 +20,6 @@ html,body {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  /* background-color: #F0F2A6; */
-  /* background-color: #AA6373; */
   background-color: #EDE7D9;
 }
 
@@ -28,36 +27,32 @@ html,body {
 /* ----------------------
  =====> BOOK ROUTE
 -------------------------- */
-
 .book-container {
   height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-rows: repeat(48, 1fr);
 }
-
 
 .book-content {
-  display: grid;
-  grid-template-columns: 50vw 50vw;
-  gap: 50px;
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-
 .book-content p {
-  padding: 50px;
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
-  font-size: 50px;
-  margin: 5px;
 }
 
 .book-content a {
-  color: #4B4237;
-  text-decoration: none;
+   color: #4B4237;
+   text-decoration: none;
+  margin: 10px;
+  font-size: 50px;
+  cursor: pointer;
 }
 
+.book-content a:hover {
+  color: #D5A021;
+}
 
 /* ----------------------
  =====> TOKEN ROUTE
@@ -68,6 +63,7 @@ html,body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  flex-direction: column;
 }
 
 .token-container p {
@@ -75,18 +71,64 @@ html,body {
    font-size: 50px;
 }
 
+.token-container .back {
+  background-color: #4B4237;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.token-container .back:hover {
+  background-color: #D5A021;
+}
+
 /* ----------------------
  ====> PAGINATION NAV
 -------------------------- */
-.nav {
+ .nav {
   display: flex;
   gap: 15px;
-  grid-row-start: 46;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
 }
 
-.page-item {
-  cursor: pointer;
-  padding: 20px;
-  border-radius: 50%;
-  background-color: gray;
+
+
+
+
+@media only screen and (min-width: 600px) {
+  .book-content p {
+    margin: 50px;
+  }
+
+  .book-content a, .token-container p {
+    font-size: 4.5em;
+  }
+
+  .css-1j4k3n5-MuiButtonBase-root-MuiPaginationItem-root {
+    width: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    height: 60px;
+  }
+
+
+}
+
+
+@media only screen and (min-width: 768px) {
+  .book-content {
+    display: grid;
+    grid-template-columns: 50vw 50vw;  
+    grid-template-rows: repeat(48, 1fr);
+    /* align-items: center; */
+  }
+
+  .book-content p {
+    grid-row-end: 20;
+  }
 }
